@@ -60,7 +60,12 @@ Vagrant.configure(2) do |config|
       usermod --home #{USER_HOME} #{USER_NAME} > /dev/null 2>&1
       echo "#{USER_NAME} ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/00-vagrant-sudo
       mkdir -p #{USER_HOME}/.ssh
-      echo "#{AUTHORIZED_KEYS.join("\n")}" > #{USER_HOME}/.ssh/authorized_keys
+      touch #{USER_HOME}/.ssh/authorized_keys
+      echo "#{AUTHORIZED_KEYS.join("\n")}" > /tmp/host_keys
+      sort < /tmp/host_keys > /tmp/host_keys.sorted
+      sort < #{USER_HOME}/.ssh/authorized_keys > /tmp/guest_keys.sorted
+      comm -23 /tmp/host_keys.sorted /tmp/guest_keys.sorted > #{USER_HOME}/.ssh/authorized_keys
+      comm -13 /tmp/host_keys.sorted /tmp/guest_keys.sorted >> #{USER_HOME}/.ssh/authorized_keys
     EOF
 
     vm.synced_folder '.', "#{USER_HOME}/app", type: 'nfs'
