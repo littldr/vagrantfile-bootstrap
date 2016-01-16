@@ -69,6 +69,8 @@ Vagrant.configure(2) do |config|
       comm -13 /tmp/host_keys.sorted /tmp/guest_keys.sorted >> #{USER_HOME}/.ssh/authorized_keys
     EOF
 
+    vm.provision 'shell', path: ENV['AFTER_PROVISION_SCRIPT'] if ENV['AFTER_PROVISION_SCRIPT']
+
     vm.synced_folder '.', "#{USER_HOME}/app", type: 'nfs'
   end
 
