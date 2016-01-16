@@ -26,16 +26,27 @@ HOST_SSH_KEYS = begin
   Dir.glob("#{File.expand_path('~')}/.ssh/{#{glob_pattern}}.pub")
 end
 
-USER_NAME = ENV['USER_NAME'] || 'vagrant'
 BOX_NAME = ENV['BOX_NAME'] || 'base'
+USER_NAME = ENV['USER_NAME'] || 'vagrant'
 HOSTNAME = ENV['HOSTNAME'] || 'vagrant'
 PRIVATE_IP = ENV['PRIVATE_IP'] || '192.168.150.150'
 
 USER_HOME = "/home/#{USER_NAME}"
 AUTHORIZED_KEYS = HOST_SSH_KEYS.map do |p|
-  puts "==>  custom: Using public-key '#{p}'"
   File.read(p).strip
 end
+
+def output(msg)
+  puts "==>  config: #{msg}"
+end
+
+output 'Configuration:'
+output "\tBox: #{BOX_NAME}"
+output "\tUser: #{USER_NAME}"
+output "\tHostname: #{HOSTNAME}"
+output "\tHostname Aliases: #{ENV['HOSTNAME_ALIASES']}"
+output "\tPrivate IP: #{PRIVATE_IP}"
+output "\tUsed SSH Keys: #{HOST_SSH_KEYS.join(', ')}"
 
 Vagrant.configure(2) do |config|
   config.vm.tap do |vm|
