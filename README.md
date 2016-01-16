@@ -45,11 +45,11 @@ default                   running (virtualbox)
 ```
 
 ### Overview
-| Variable         | Default           | Notes                                                           |
-| ---------------- |:-----------------:| --------------------------------------------------------------- |
-| BOX_NAME         | `base`            | Name of the used box image.                                     |
-| USER_NAME        | `vagrant`         | This user will be created.                                      |
-| HOSTNAME         | `vagrant`         | Hostname from which the system will be accessible from outside. |
-| HOSTNAME_ALIASES | Empty             | Hostname-Aliases.                                               |
-| PRIVATE_IP       | `192.168.150.150` | IP for the vagrant box.                                         |
-| HOST_SSH_KEYS    | `*`               | Names of the ssh-key in your `~/.ssh/` directory. Only this keys will be copied into the guest system |
+| Variable           | Default           | Notes                                                           |
+| ------------------ |:-----------------:| --------------------------------------------------------------- |
+| `BOX_NAME`         | `base`            | Name of the used box image.                                     |
+| `USER_NAME`        | `vagrant`         | This user will be created.                                      |
+| `HOSTNAME`         | `vagrant`         | Hostname from which the system will be accessible from outside. |
+| `HOSTNAME_ALIASES` | Empty             | Hostname-Aliases.                                               |
+| `PRIVATE_IP`       | `192.168.150.150` | IP for the vagrant box.                                         |
+| `HOST_SSH_KEYS`    | `*`               | Names of the ssh-key in your `~/.ssh/` directory. Only this keys will be copied into the guest system |
