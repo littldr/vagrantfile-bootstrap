@@ -16,6 +16,10 @@ Some parts of this `Vagrantfile` are configurable via an additional `.vagrantfil
 
 * **tbd** in the future.
 
+## Installation
+
+Installation is simple, just copy the [`Vagrantfile`](./Vagrantfile) into your project, create a `.vagrantfile` with your configuration and run `vagrant up`.
+
 ## Configuration
 
 To change the default configuration create an additional `.vagrantfile` in the same directory where you placed the `Vagrantfile`.
