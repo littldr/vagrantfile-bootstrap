@@ -32,6 +32,8 @@ USER_NAME = ENV['USER_NAME'] || 'vagrant'
 HOSTNAME = ENV['HOSTNAME'] || 'vagrant'
 PRIVATE_IP = ENV['PRIVATE_IP'] || '192.168.150.150'
 
+USER_SHELL = '/bin/bash'
+
 USER_HOME = "/home/#{USER_NAME}"
 AUTHORIZED_KEYS = HOST_SSH_KEYS.map do |p|
   File.read(p).strip
@@ -59,6 +61,7 @@ Vagrant.configure(2) do |config|
     vm.provision 'shell', inline: <<-EOF
       id -u #{USER_NAME} > /dev/null 2>&1 || useradd #{USER_NAME}
       usermod --home #{USER_HOME} #{USER_NAME} > /dev/null 2>&1
+      usermod --shell #{USER_SHELL} #{USER_NAME} > /dev/null 2>&1
       echo "#{USER_NAME} ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/00-vagrant-sudo
       mkdir -p #{USER_HOME}/.ssh
       touch #{USER_HOME}/.ssh/authorized_keys
