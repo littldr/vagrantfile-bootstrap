@@ -8,7 +8,7 @@ VAGRANT_PLUGINS.each do |plugin|
 end
 
 # Load .env file
-DOTENV_FILE = '.env'
+DOTENV_FILE = '.vagrantfile'
 begin
   File.read(DOTENV_FILE).each_line do |line|
     line.strip!
