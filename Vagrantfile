@@ -1,3 +1,4 @@
+# Author: Andreas Litt (@LAndreas)
 VAGRANT_PLUGINS = %w(vagrant-hostsupdater)
 
 VAGRANT_PLUGINS.each do |plugin|
