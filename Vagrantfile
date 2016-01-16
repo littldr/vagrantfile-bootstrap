@@ -68,8 +68,8 @@ Vagrant.configure(2) do |config|
       echo "#{AUTHORIZED_KEYS.join("\n")}" > /tmp/host_keys
       sort < /tmp/host_keys > /tmp/host_keys.sorted
       sort < #{USER_HOME}/.ssh/authorized_keys > /tmp/guest_keys.sorted
+      cat /tmp/guest_keys.sorted > #{USER_HOME}/.ssh/authorized_keys
       comm -23 /tmp/host_keys.sorted /tmp/guest_keys.sorted > #{USER_HOME}/.ssh/authorized_keys
-      comm -13 /tmp/host_keys.sorted /tmp/guest_keys.sorted >> #{USER_HOME}/.ssh/authorized_keys
     EOF
 
     vm.provision 'shell', path: ENV['AFTER_PROVISION_SCRIPT'] if ENV['AFTER_PROVISION_SCRIPT']
