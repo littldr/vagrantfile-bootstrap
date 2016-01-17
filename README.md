@@ -57,4 +57,4 @@ default                   running (virtualbox)
 | `HOSTNAME_ALIASES`       | Not set           | Hostname-Aliases.                                               |
 | `PRIVATE_IP`             | `192.168.150.150` | IP for the vagrant box.                                         |
 | `HOST_SSH_KEYS`          | `*`               | Names of the ssh-key in your `~/.ssh/` directory. Only this keys will be copied into the guest system |
-| `AFTER_PROVISION_SCRIPT` | Not set           | Path to script which will be uploaded and executed after provisioning. |
+| `AFTER_PROVISION_SCRIPT` | Not set           | Path to script which will be uploaded and executed (not privileged!) after provisioning. You can use `sudo` to install packages. |

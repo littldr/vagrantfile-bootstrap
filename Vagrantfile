@@ -1,4 +1,5 @@
 # Author: Andreas Litt (@LAndreas)
+# Source: https://github.com/LAndreas/vagrantfile-bootstrap
 VAGRANT_PLUGINS = %w(vagrant-hostsupdater)
 
 VAGRANT_PLUGINS.each do |plugin|
@@ -8,7 +9,7 @@ VAGRANT_PLUGINS.each do |plugin|
   end
 end
 
-# Load .env file
+# Load configration file
 DOTENV_FILE = '.vagrantfile'
 begin
   File.read(DOTENV_FILE).each_line do |line|
@@ -72,7 +73,7 @@ Vagrant.configure(2) do |config|
       comm -23 /tmp/host_keys.sorted /tmp/guest_keys.sorted > #{USER_HOME}/.ssh/authorized_keys
     EOF
 
-    vm.provision 'shell', path: ENV['AFTER_PROVISION_SCRIPT'] if ENV['AFTER_PROVISION_SCRIPT']
+    vm.provision 'shell', privileged: false, path: ENV['AFTER_PROVISION_SCRIPT'] if ENV['AFTER_PROVISION_SCRIPT']
 
     vm.synced_folder '.', "#{USER_HOME}/app", type: 'nfs'
   end
