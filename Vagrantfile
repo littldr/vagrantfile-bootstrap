@@ -71,6 +71,7 @@ Vagrant.configure(2) do |config|
       sort < #{USER_HOME}/.ssh/authorized_keys > /tmp/guest_keys.sorted
       cat /tmp/guest_keys.sorted > #{USER_HOME}/.ssh/authorized_keys
       comm -23 /tmp/host_keys.sorted /tmp/guest_keys.sorted >> #{USER_HOME}/.ssh/authorized_keys
+      chown #{USER_NAME}:#{USER_NAME} #{USER_HOME} #{USER_HOME}/.ssh #{USER_HOME}/.ssh/authorized_keys
     EOF
 
     vm.provision 'shell', privileged: false, path: ENV['AFTER_PROVISION_SCRIPT'] if ENV['AFTER_PROVISION_SCRIPT']
